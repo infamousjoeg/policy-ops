@@ -1,0 +1,50 @@
+{
+  "safeRequest": {
+    "vaultName": "DemoVault",
+    "cpmName": "PasswordManager",
+    "lobName": "LOB_CICD",
+    "requestor": "jgarcia",
+    "projectName": "TestDemo10",
+    "safeName": "TestDemo10",
+    "environment": "dev"
+  },
+  "identities": [
+    {
+      "identity": "!host app-example-sidecar-user1"
+    },
+    {
+      "identity": "!host TestDemo10/admin-app",
+      "managed_identity": "true",
+      "authn": {
+        "type": "k8s",
+        "id": "mac-k8s",
+        "annotations": [
+          {
+            "key": "authn-k8s/namespace",
+            "value": "user1"
+          },
+          {
+            "key": "authn-k8s/service-account",
+            "value": "app-example-sidecar"
+          },
+          {
+            "key": "authn-k8s/authentication-container-name",
+            "value": "authenticator"
+          }
+        ]
+      }
+    }
+  ],
+  "accountRequests": [
+    {
+      "accountName": "MySQL-Dev",
+      "platformId": "MySQL",
+      "systemType": "Database",
+      "address": "sql.joegarcia.dev",
+      "port": 3306,
+      "database": "conjur_demo",
+      "userName": "devapp1",
+      "secretType": "password"
+    }
+  ]
+}
